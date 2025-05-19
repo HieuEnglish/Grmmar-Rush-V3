@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import useSound from "use-sound";
 import { BsVolumeUpFill, BsVolumeMuteFill } from "react-icons/bs";
 import { FaPlay, FaInfoCircle, FaQuestion, FaTrophy } from "react-icons/fa";
 import { generateQuestion } from "./questionGenerator";

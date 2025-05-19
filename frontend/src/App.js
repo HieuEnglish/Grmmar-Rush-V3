@@ -412,7 +412,7 @@ function App() {
                        border-2 border-neon-blue bg-cyber-gray text-white hover:bg-cyber-light
                        hover:shadow-neon-blue"
               onClick={() => {
-                playClick();
+                if (!muted) playClickSound();
                 setShowHighScores(false);
               }}
             >

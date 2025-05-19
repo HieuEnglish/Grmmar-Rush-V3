@@ -128,7 +128,7 @@ function App() {
 
   // Start a new game
   const startGame = () => {
-    playClick();
+    if (!muted) playClickSound();
     setGameActive(true);
     setTimeLeft(60);
     setScore(0);
@@ -137,7 +137,7 @@ function App() {
 
   // End the current game
   const endGame = () => {
-    playGameOver();
+    if (!muted) playGameOverSound();
     clearInterval(timerRef.current);
     setGameActive(false);
     
@@ -162,10 +162,10 @@ function App() {
     if (!gameActive) return;
 
     if (question.checkAnswer(answer)) {
-      playCorrect();
+      if (!muted) playCorrectSound();
       setScore(prev => prev + (difficulty === 'easy' ? 1 : difficulty === 'medium' ? 2 : 3));
     } else {
-      playWrong();
+      if (!muted) playWrongSound();
     }
   };
 

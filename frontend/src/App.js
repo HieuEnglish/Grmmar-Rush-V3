@@ -309,7 +309,7 @@ function App() {
                              border border-neon-pink bg-cyber-gray text-white text-sm
                              hover:shadow-neon-pink flex items-center justify-center gap-2"
                     onClick={() => {
-                      playClick();
+                      if (!muted) playClickSound();
                       setShowHighScores(true);
                     }}
                   >

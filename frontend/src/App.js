@@ -9,12 +9,44 @@ import { generateQuestion } from "./questionGenerator";
 const BACKGROUND_IMG = "https://images.unsplash.com/photo-1514439827219-9137a0b99245";
 const LOGO_IMG = "https://images.unsplash.com/photo-1588007374946-c79543903e8a";
 
-// Audio URLs - using samples that don't require API keys
-const CLICK_SFX = "https://assets.mixkit.co/sfx/preview/mixkit-simple-click-tone-1112.mp3";
-const CORRECT_SFX = "https://assets.mixkit.co/sfx/preview/mixkit-bonus-earned-in-video-game-2064.mp3";
-const WRONG_SFX = "https://assets.mixkit.co/sfx/preview/mixkit-negative-tone-interface-tap-2569.mp3";
-const GAME_OVER_SFX = "https://assets.mixkit.co/sfx/preview/mixkit-arcade-retro-game-over-213.mp3";
-const BACKGROUND_MUSIC = "https://assets.mixkit.co/sfx/preview/mixkit-game-level-music-689.mp3";
+// Using simple browser audio beeps since we don't have local audio files
+const playSimpleBeep = (freq = 440, duration = 200, volume = 0.5, type = 'sine') => {
+  if (typeof window === 'undefined' || !window.AudioContext) return;
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    oscillator.type = type;
+    oscillator.frequency.value = freq;
+    gainNode.gain.value = volume;
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    oscillator.start();
+    
+    setTimeout(() => {
+      oscillator.stop();
+      setTimeout(() => audioCtx.close(), 100);
+    }, duration);
+  } catch (e) {
+    console.log("Audio playback failed:", e);
+  }
+};
+
+// Simple audio functions
+const playClickSound = () => playSimpleBeep(800, 100, 0.3, 'sine');
+const playCorrectSound = () => {
+  playSimpleBeep(880, 100, 0.3, 'sine');
+  setTimeout(() => playSimpleBeep(1320, 200, 0.3, 'sine'), 100);
+};
+const playWrongSound = () => playSimpleBeep(220, 300, 0.3, 'square');
+const playGameOverSound = () => {
+  playSimpleBeep(440, 100, 0.3, 'sawtooth');
+  setTimeout(() => playSimpleBeep(330, 100, 0.3, 'sawtooth'), 150);
+  setTimeout(() => playSimpleBeep(220, 300, 0.3, 'sawtooth'), 300);
+};
 
 function App() {
   // Game state

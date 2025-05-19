@@ -61,7 +61,6 @@ function App() {
   const [muted, setMuted] = useState(false);
   const [sessionScores, setSessionScores] = useState([]);
   const timerRef = useRef(null);
-  const backgroundMusicRef = useRef(null);
 
   // Sound effects are now handled by Web Audio API functions defined above
 

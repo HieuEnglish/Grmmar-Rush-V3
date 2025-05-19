@@ -297,7 +297,7 @@ function App() {
                              border border-neon-blue bg-cyber-gray text-white text-sm
                              hover:shadow-neon-blue flex items-center justify-center gap-2"
                     onClick={() => {
-                      playClick();
+                      if (!muted) playClickSound();
                       setSelectedAge(null);
                       setDifficulty(null);
                     }}

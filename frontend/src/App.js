@@ -326,7 +326,7 @@ function App() {
                          border border-neon-purple bg-cyber-gray text-white
                          hover:shadow-neon-purple flex items-center justify-center gap-2"
                 onClick={() => {
-                  playClick();
+                  if (!muted) playClickSound();
                   setShowRules(true);
                 }}
               >

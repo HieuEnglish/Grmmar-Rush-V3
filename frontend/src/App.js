@@ -170,13 +170,6 @@ function App() {
   // Toggle mute state
   const toggleMute = () => {
     setMuted(prev => !prev);
-    if (backgroundMusicRef.current) {
-      if (muted) {
-        backgroundMusicRef.current.volume = 0.3;
-      } else {
-        backgroundMusicRef.current.volume = 0;
-      }
-    }
   };
 
   // Translate age group to label

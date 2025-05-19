@@ -93,24 +93,9 @@ function App() {
     }
   }, [sessionScores]);
 
-  // Handle background music
+  // Handle background music - disabled since we're using Web Audio API for sound effects
   useEffect(() => {
-    if (gameActive && !muted) {
-      if (!backgroundMusicRef.current) {
-        backgroundMusicRef.current = new Audio(BACKGROUND_MUSIC);
-        backgroundMusicRef.current.volume = 0.3;
-        backgroundMusicRef.current.loop = true;
-      }
-      backgroundMusicRef.current.play().catch(e => console.log("Audio play failed:", e));
-    } else if (backgroundMusicRef.current) {
-      backgroundMusicRef.current.pause();
-    }
-
-    return () => {
-      if (backgroundMusicRef.current) {
-        backgroundMusicRef.current.pause();
-      }
-    };
+    // Background music removed to simplify audio implementation
   }, [gameActive, muted]);
 
   // Set up or clear the timer

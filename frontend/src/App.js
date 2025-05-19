@@ -64,11 +64,7 @@ function App() {
   const timerRef = useRef(null);
   const backgroundMusicRef = useRef(null);
 
-  // Sound effects
-  const [playClick] = useSound(CLICK_SFX, { volume: muted ? 0 : 0.5 });
-  const [playCorrect] = useSound(CORRECT_SFX, { volume: muted ? 0 : 0.5 });
-  const [playWrong] = useSound(WRONG_SFX, { volume: muted ? 0 : 0.5 });
-  const [playGameOver] = useSound(GAME_OVER_SFX, { volume: muted ? 0 : 0.5 });
+  // Sound effects are now handled by Web Audio API functions defined above
 
   // Load high score from session storage
   useEffect(() => {
